@@ -25,18 +25,19 @@ class ExperienceCrystalBlock(settings: Settings) : BlockWithEntity(settings) {
 
         val blockEntity = world.getBlockEntity(pos) as? ExperienceCrystalBlockEntity ?: return ActionResult.FAIL
 
-        if (player.isSneaking) {
-            if (player.totalExperience >= 5) {
-                player.addExperience(-5)
-                blockEntity.addXp(5)
-                Eudaimonia.logger.info("amount: ${blockEntity.storedXp}")
+        val amount = 5
+        when {
+            player.isSneaking && player.totalExperience >= amount -> {
+                player.addExperience(-amount)
+                blockEntity.addXp(amount)
             }
-        } else {
-            if (blockEntity.removeXp(5)) {
-                player.addExperience(5)
-                Eudaimonia.logger.info("amount: ${blockEntity.storedXp}")
+
+            !player.isSneaking && blockEntity.removeXp(amount) -> {
+                player.addExperience(amount)
             }
         }
+
+        Eudaimonia.logger.info("stored xp: " + blockEntity.storedXp)
 
         return ActionResult.SUCCESS
     }
