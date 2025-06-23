@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "eudaimonia:item/crystal_of_experience"
+  }
+}

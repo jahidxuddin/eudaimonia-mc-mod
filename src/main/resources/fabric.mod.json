@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "eudaimonia",
+  "version": "${version}",
+  "name": "Eudaimonia",
+  "description": "A mod for the overlooked pleasures – seamless additions that make Minecraft life truly worth living.  Subtle features. Gentle quality-of-life. Forgotten ideas, finally remembered.  Welcome to better survival – welcome to Eudaimonia.",
+  "authors": [
+    "InFeRno9146"
+  ],
+  "contact": {
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/FabricMC/fabric-example-mod"
+  },
+  "license": "CC0-1.0",
+  "icon": "assets/eudaimonia/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      {
+        "value": "de.ju.eudaimonia.Eudaimonia",
+        "adapter": "kotlin"
+      }
+    ],
+    "client": [
+      {
+        "value": "de.ju.eudaimonia.EudaimoniaClient",
+        "adapter": "kotlin"
+      }
+    ]
+  },
+  "mixins": [
+    "eudaimonia.mixins.json",
+    {
+      "config": "eudaimonia.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.14",
+    "minecraft": "~1.21.6",
+    "java": ">=21",
+    "fabric-api": "*",
+    "fabric-language-kotlin": "*"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
