@@ -1,8 +1,9 @@
-package de.ju.eudaimonia.blocks
+package de.ju.eudaimonia.registry
 
+import de.ju.eudaimonia.Eudaimonia
+import de.ju.eudaimonia.experiencecrystal.ExperienceCrystalBlock
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents.ModifyEntries
 import net.minecraft.block.AbstractBlock
 import net.minecraft.block.Block
 import net.minecraft.item.BlockItem
@@ -20,7 +21,8 @@ object ModBlocks {
     val CRYSTAL_OF_EXPERIENCE: Block? = register(
         "crystal_of_experience",
         { settings -> ExperienceCrystalBlock(settings) },
-        AbstractBlock.Settings.create().sounds(BlockSoundGroup.AMETHYST_BLOCK).strength(1.5f).luminance { 7 },
+        AbstractBlock.Settings.create().nonOpaque().sounds(BlockSoundGroup.AMETHYST_BLOCK).strength(1.5f)
+            .luminance { 7 }.requiresTool(),
         false
     )
 
@@ -28,7 +30,7 @@ object ModBlocks {
     fun initialize() {
         CRYSTAL_OF_EXPERIENCE
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL)
-            .register(ModifyEntries { itemGroup: FabricItemGroupEntries? ->
+            .register(ItemGroupEvents.ModifyEntries { itemGroup: FabricItemGroupEntries? ->
                 itemGroup?.add(CRYSTAL_OF_EXPERIENCE?.asItem())
             })
     }
@@ -52,10 +54,10 @@ object ModBlocks {
     }
 
     private fun keyOfBlock(name: String): RegistryKey<Block> {
-        return RegistryKey.of(RegistryKeys.BLOCK, Identifier.of("eudaimonia", name))
+        return RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(Eudaimonia.MOD_ID, name))
     }
 
     private fun keyOfItem(name: String): RegistryKey<Item> {
-        return RegistryKey.of(RegistryKeys.ITEM, Identifier.of("eudaimonia", name))
+        return RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Eudaimonia.MOD_ID, name))
     }
 }

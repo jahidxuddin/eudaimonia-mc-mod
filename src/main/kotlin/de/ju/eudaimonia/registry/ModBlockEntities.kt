@@ -1,5 +1,7 @@
-package de.ju.eudaimonia.blocks
+package de.ju.eudaimonia.registry
 
+import de.ju.eudaimonia.Eudaimonia
+import de.ju.eudaimonia.experiencecrystal.ExperienceCrystalBlockEntity
 import net.fabricmc.fabric.api.`object`.builder.v1.block.entity.FabricBlockEntityTypeBuilder
 import net.minecraft.block.entity.BlockEntityType
 import net.minecraft.registry.Registries
@@ -22,5 +24,5 @@ object ModBlockEntities {
         EXPERIENCE_CRYSTAL_BLOCK_ENTITY
     }
 
-    private fun identifier(path: String): Identifier = Identifier.of("eudaimonia", path)
+    private fun identifier(path: String): Identifier = Identifier.of(Eudaimonia.MOD_ID, path)
 }

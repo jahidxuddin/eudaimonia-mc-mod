@@ -1,5 +1,6 @@
-package de.ju.eudaimonia.blocks
+package de.ju.eudaimonia.experiencecrystal
 
+import de.ju.eudaimonia.registry.ModBlockEntities
 import net.minecraft.block.BlockState
 import net.minecraft.block.entity.BlockEntity
 import net.minecraft.storage.ReadView

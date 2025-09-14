@@ -1,6 +1,6 @@
-package de.ju.eudaimonia.items
+package de.ju.eudaimonia.registry
 
-import de.ju.eudaimonia.blocks.ModBlocks
+import de.ju.eudaimonia.Eudaimonia
 import net.minecraft.item.BlockItem
 import net.minecraft.item.Item
 import net.minecraft.registry.Registries
@@ -23,7 +23,7 @@ object ModItems {
     fun register(
         name: String, itemFactory: (Item.Settings) -> Item, settings: Item.Settings
     ): Item {
-        val itemKey = RegistryKey.of(RegistryKeys.ITEM, Identifier.of("eudaimonia", name))
+        val itemKey = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Eudaimonia.MOD_ID, name))
         val item = itemFactory(settings.registryKey(itemKey))
         Registry.register(Registries.ITEM, itemKey, item)
         return item
